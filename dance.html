@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Class Booking System</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .class-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .class {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #2f2f2f;
+            color: white;
+            position: absolute;
+            width: 100%;
+            bottom: end;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dance Class Booking System</h1>
+        <p>Book your favorite dance class now!</p>
+    </header>
+
+    <main>
+        <div class="class-list">
+            <h2>Available Dance Classes</h2>
+            <div class="class" id="class1">
+                <h3>Zumba</h3>
+                <p>Available Spots: <span id="class1-spots">5</span></p>
+                <button onclick="bookClass('class1')">Book Now</button>
+            </div>
+            <div class="class" id="class1">
+                <h3>Hip Hop</h3>
+                <p>Available Spots: <span id="class1-spots">5</span></p>
+                <button onclick="bookClass('class1')">Book Now</button>
+            </div>
+            <div class="class" id="class2">
+                <h3>Ballet</h3>
+                <p>Available Spots: <span id="class2-spots">3</span></p>
+                <button onclick="bookClass('class2')">Book Now</button>
+            </div>
+            <div class="class" id="class3">
+                <h3>Salsa</h3>
+                <p>Available Spots: <span id="class3-spots">8</span></p>
+                <button onclick="bookClass('class3')">Book Now</button>
+            </div>
+        </div>
+
+        <div id="confirmation-message" class="hidden">
+            <p>Your booking is confirmed!</p>
+        </div>
+    </main>
+
+    
+    <script>
+        // Function to handle booking logic
+        function bookClass(classId) {
+            let classSpots = document.getElementById(`${classId}-spots`);
+            let spots = parseInt(classSpots.innerText);
+
+            // If spots are available
+            if (spots > 0) {
+                // Decrease the available spots
+                spots--;
+                classSpots.innerText = spots;
+
+                // Show confirmation message
+                showConfirmation();
+            } else {
+                alert("Sorry, no spots left in this class.");
+            }
+        }
+
+        // Function to show confirmation message
+        function showConfirmation() {
+            let confirmationMessage = document.getElementById('confirmation-message');
+            confirmationMessage.classList.remove('hidden');
+            
+            // Hide the confirmation after 3 seconds
+            setTimeout(() => {
+                confirmationMessage.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+<footer>
+        <p>&copy; 2025 Dance Studio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
